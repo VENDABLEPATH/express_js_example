@@ -28,7 +28,7 @@ app.get('/friends/:friendId', (req, res) => {
     } else {
         res.status(200).json(friends[id]);
     }
-})
+});
 
 app.get(`/messages`, (req, res) => {
     res.send(`<p>Hello albert.</p>`);
