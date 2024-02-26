@@ -15,6 +15,13 @@ const friends = [
     }
 ];
 
+// register middleware
+app.use((req, res, next) => {
+    const start = Date.now();
+    next();
+    console.log(`method: ${req.method}, url: ${req.url}, ${Date.now() - start}ms`);
+});
+
 app.get(`/friends`, (req, res) => {
     res.json(friends);
 });
