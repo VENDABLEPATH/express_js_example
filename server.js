@@ -1,7 +1,7 @@
 const express = require('express');
 
-const { getFriend, allFriends, postFriend } = require('./controllers/friends.controller');
-const { getMessage, postMessage } = require('./controllers/messages.controller');
+const friendsRouter = require('./routes/friends.router');
+const messageRouter = require('./routes/messages.router');
 
 const app = express();
 
@@ -12,18 +12,16 @@ const PORT = 3000;
 app.use((req, res, next) => {
     const start = Date.now();
     next();
-    console.log(`method: ${req.method}, url: ${req.url}, ${Date.now() - start}ms`);
+    console.log(`method: ${req.method}, url: ${req.baseUrl}${req.url}, ${Date.now() - start}ms`);
 });
 
 app.use(express.json());
 
-// POST request
-app.post('/friends', postFriend);
-app.get(`/friends`, allFriends);
-app.get('/friends/:friendId', getFriend);
+// friends router
+app.use('/friends', friendsRouter);
 
-app.get(`/messages`, getMessage);
-app.post('/messages', postMessage);
+// router for messages
+app.use('/messages', messageRouter);
 
 
 app.listen(PORT, () => {
