@@ -25,7 +25,7 @@ app.use(express.json());
 
 // root router
 app.get('/', (req, res) => {
-    res.render('index.hbs', {
+    res.render('index', {
         title: "My friends are very clever",
         caption: "Let's go to France!"
     })
