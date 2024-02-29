@@ -15,6 +15,8 @@ app.use((req, res, next) => {
     console.log(`method: ${req.method}, url: ${req.baseUrl}${req.url}, ${Date.now() - start}ms`);
 });
 
+app.use('/site', express.static('public'));
+
 app.use(express.json());
 
 // friends router
